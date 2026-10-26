@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Бесплатно проверьте точные повторы SKU в одном столбце до загрузки товаров на Яндекс Маркет. Сравнение выполняется в вашем браузере, без отправки данных.">
+  <title>Дубли SKU в каталоге: бесплатная проверка столбца — ФидКонтроль</title>
+  <link rel="stylesheet" href="site.css">
+  <style>
+    .checker-label{display:block;font-weight:750;margin:1rem 0 .45rem}
+    #sku-input{display:block;width:100%;min-height:12rem;resize:vertical;padding:.9rem;border:1px solid #84969a;border-radius:.6rem;background:#fff;color:#17232d;font:1rem/1.45 ui-monospace,SFMono-Regular,Consolas,monospace}
+    .checker-results{margin-top:1.3rem}
+    .checker-results table{width:100%;border-collapse:collapse;background:#fff}
+    .checker-results th,.checker-results td{border:1px solid #ccd5d8;padding:.7rem;text-align:left;vertical-align:top;overflow-wrap:anywhere}
+    .checker-results th{background:#e6f3ef}
+    .checker-results [data-state=error]{color:#9f2f21;font-weight:750}
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+<header class="site-head"><div class="wrap head-row"><a class="brand" href="index.html"><small>Практика продавца</small>ФидКонтроль</a><nav aria-label="Разделы"><a href="index.html">С чего начать</a><a href="excel.html">Excel-шаблон</a><a href="yml.html">YML-файл</a><a href="images.html">Изображения</a><a href="statuses.html">Статус товара</a><a href="sku-dubl.html" aria-current="page">Дубли SKU</a></nav></div></header>
+<main id="main">
+  <div class="hero"><div class="wrap"><p class="eyebrow">Бесплатная проверка одного столбца</p><h1>Дубли SKU: найдите повтор до загрузки файла</h1><p class="lead">Скопируйте только столбец артикулов из своей таблицы. Эта страница покажет точные повторы после удаления пробелов по краям. Данные останутся в вашем браузере.</p><div class="actions"><a class="button" href="#checker">Проверить столбец</a><a class="button secondary" href="https://telegra.ph/Dubli-SKU-v-fajle-Marketa-povtor-stroki-ili-peresechenie-fidov-10-20">Как различить повтор строки и два фида</a></div></div></div>
+  <div class="article">
+    <section id="checker"><h2>Вставьте по одному SKU в строку</h2><p>Из Excel или CSV скопируйте только значения столбца с вашим SKU. Заголовок столбца не включайте. Номера в результате относятся к строкам вставленного списка, а не к номерам строк исходного файла.</p>
+      <label class="checker-label" for="sku-input">Столбец SKU</label>
+      <textarea id="sku-input" spellcheck="false" placeholder="A-101&#10;B-202&#10;A-101" aria-describedby="checker-limit"></textarea>
+      <p id="checker-limit" class="small">До 10 000 строк и 200 000 символов. Пустые строки пропускаются. Регистр букв сохраняется: «A-1» и «a-1» считаются разными.</p>
+      <div class="actions"><button class="button" id="check-button" type="button">Найти повторы</button><button class="button secondary" id="example-button" type="button">Показать вымышленный пример</button><button class="button secondary" id="clear-button" type="button">Очистить</button></div>
+      <div id="checker-results" class="checker-results" role="status" aria-live="polite"><p>Результат появится здесь после проверки.</p></div>
+      <p class="small">Проверка выполняется кодом этой страницы в вашем браузере. Мы не отправляем введённые SKU на сервер и не сохраняем их. Перед вводом реального каталога учитывайте правила своей компании о работе с данными.</p>
+    </section>
+    <section><h2>Что делать с найденным повтором</h2><ol class="steps"><li>Сверьте номер строки в результате с исходным столбцом. Найдите обе записи и проверьте, относятся ли они к одному товару.</li><li>Если одна строка повторилась случайно, исправьте исходную таблицу и сохраните новую копию. Не переименовывайте SKU существующего товара наугад.</li><li>Если строки пришли из разных фидов или файлов, эта страница не видит второй файл. Сверьте идентификаторы между источниками отдельно, затем проверьте файл в кабинете Маркета.</li></ol></section>
+    <section><div class="callout"><h2>Граница этой проверки</h2><p>Здесь сравнивается один вставленный столбец. Страница не разбирает Excel, CSV или YML, не сверяет другие фиды, историю каталога, цены, обязательные поля, модерацию и доступность товара покупателю. Отсутствие повторов здесь не означает, что файл готов к загрузке.</p><div class="actions"><a class="button" href="synthetic-report.pdf">Посмотреть синтетический отчёт</a><a class="button secondary" href="https://market.yandex.ru/card/veb-servis-fidkontrol-dlya-proverki-csv-yml-i-xlsx-litsenziya-na-30-dney/6150346398">30-дневная лицензия на Маркете</a></div></div></section>
+    <section><h2>Почему это важно</h2><p>Маркет требует отдельный артикул для каждого товара и каждого варианта. В YML он находится в атрибуте <code>id</code> элемента <code>offer</code>; устаревший <code>shop-sku</code>, если он есть, может переопределять это значение. Окончательные правила и ошибки проверяйте в своём кабинете Маркета.</p><ul class="source-list"><li><a href="https://yandex.ru/support/marketplace/ru/assortment/create/main-fields/general">Яндекс Маркет: основные данные товара и правила SKU</a>.</li><li><a href="https://yandex.ru/support/marketplace/ru/assortment/auto/yml">Яндекс Маркет: структура YML и идентификатор offer</a>.</li></ul><p class="small">Независимая памятка; официальные инструкции сверены 26 октября 2026 года.</p></section>
+  </div>
+</main>
+<footer class="site-foot"><div class="wrap">ФидКонтроль · <a href="index.html">Выбор файла</a> · <a href="excel.html">Excel</a> · <a href="yml.html">YML</a> · <a href="https://market.yandex.ru/card/veb-servis-fidkontrol-dlya-proverki-csv-yml-i-xlsx-litsenziya-na-30-dney/6150346398">30-дневная лицензия на Маркете</a></div></footer>
+<script>
+(() => {
+  'use strict';
+  const input = document.getElementById('sku-input');
+  const result = document.getElementById('checker-results');
+  const maxRows = 10000;
+  const maxCharacters = 200000;
+  const paragraph = (message, state) => {
+    result.replaceChildren();
+    const p = document.createElement('p');
+    p.textContent = message;
+    if (state) p.dataset.state = state;
+    result.append(p);
+  };
+  document.getElementById('check-button').addEventListener('click', () => {
+    const text = input.value.replace(/^\uFEFF/, '');
+    if (text.length > maxCharacters) { paragraph('Слишком много символов. Разделите столбец на части до 200 000 символов.', 'error'); return; }
+    const lines = text.split(/\r\n|\n|\r/);
+    if (lines.length > maxRows) { paragraph('Слишком много строк. Разделите столбец на части до 10 000 строк.', 'error'); return; }
+    const seen = new Map();
+    let nonempty = 0;
+    lines.forEach((line, index) => {
+      const sku = line.trim();
+      if (!sku) return;
+      nonempty += 1;
+      const rowNumbers = seen.get(sku) || [];
+      rowNumbers.push(index + 1);
+      seen.set(sku, rowNumbers);
+    });
+    if (!nonempty) { paragraph('Вставьте хотя бы один SKU для проверки.', 'error'); return; }
+    const duplicates = [...seen].filter(([, rows]) => rows.length > 1);
+    if (!duplicates.length) { paragraph(`Проверено ${nonempty} непустых строк. Точных повторов в этом столбце нет.`); return; }
+    result.replaceChildren();
+    const p = document.createElement('p');
+    p.textContent = `Проверено ${nonempty} непустых строк. Повторяются ${duplicates.length} разных SKU.`;
+    result.append(p);
+    const table = document.createElement('table');
+    const header = table.createTHead().insertRow();
+    for (const label of ['SKU', 'Строки во вставленном списке']) {
+      const th = document.createElement('th'); th.scope = 'col'; th.textContent = label; header.append(th);
+    }
+    const body = table.createTBody();
+    for (const [sku, rows] of duplicates) {
+      const row = body.insertRow();
+      row.insertCell().textContent = sku;
+      row.insertCell().textContent = rows.join(', ');
+    }
+    result.append(table);
+  });
+  document.getElementById('example-button').addEventListener('click', () => {
+    input.value = 'A-101\nB-202\n A-101 \nC-303\nB-202';
+    document.getElementById('check-button').click();
+  });
+  document.getElementById('clear-button').addEventListener('click', () => {
+    input.value = '';
+    paragraph('Список очищен. Результат появится после проверки.');
+    input.focus();
+  });
+})();
+</script>
+</body>
+</html>
