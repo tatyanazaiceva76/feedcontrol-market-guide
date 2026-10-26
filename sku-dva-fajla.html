@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Сравните два столбца SKU из YML-файлов одного назначения до загрузки на Маркет. Бесплатная локальная проверка точных совпадений и номеров строк без отправки данных.">
+  <title>Совпадения SKU в двух YML-файлах — локальная проверка | ФидКонтроль</title>
+  <link rel="stylesheet" href="site.css">
+  <style>
+    .pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem}
+    .pair label{display:block;font-weight:750;margin:.5rem 0}
+    .pair textarea{display:block;width:100%;min-height:11rem;resize:vertical;padding:.9rem;border:1px solid #84969a;border-radius:.6rem;background:#fff;color:#17232d;font:1rem/1.45 ui-monospace,SFMono-Regular,Consolas,monospace}
+    .results{margin-top:1.3rem}.results table{width:100%;border-collapse:collapse;background:#fff}
+    .results th,.results td{border:1px solid #ccd5d8;padding:.7rem;text-align:left;vertical-align:top;overflow-wrap:anywhere}
+    .results th{background:#e6f3ef}.results [data-state=error]{color:#9f2f21;font-weight:750}
+    @media(max-width:720px){.pair{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+<header class="site-head"><div class="wrap head-row"><a class="brand" href="index.html"><small>Практика продавца</small>ФидКонтроль</a><nav aria-label="Разделы"><a href="index.html">С чего начать</a><a href="yml.html">YML-файл</a><a href="sku-dubl.html">Один список SKU</a><a href="sku-dva-fajla.html" aria-current="page">Два списка SKU</a></nav></div></header>
+<main id="main">
+  <div class="hero"><div class="wrap"><p class="eyebrow">Бесплатно · два вставленных списка</p><h1>Есть ли одинаковые SKU в двух файлах?</h1><p class="lead">Вставьте два столбца артикулов из файлов <strong>одного назначения</strong>. Страница покажет точные совпадения и строки в каждом вставленном списке. Сравнение идёт только в вашем браузере.</p><div class="actions"><a class="button" href="#compare">Сравнить списки</a><a class="button secondary" href="yml.html">Сначала различить каталог и размещение</a></div></div></div>
+  <div class="article">
+    <section id="compare"><h2>Сравнение двух столбцов SKU</h2><p>Скопируйте только значения SKU, без заголовка: один артикул в строке. Подойдут столбцы, полученные из таблицы или извлечённые из двух YML-файлов. Эта страница <strong>не читает сами файлы</strong>. Номера в результате относятся к вставленным спискам.</p>
+      <div class="pair"><div><label for="list-a">Список А</label><textarea id="list-a" spellcheck="false" placeholder="A-101&#10;B-202&#10;C-303" aria-describedby="compare-limit"></textarea></div><div><label for="list-b">Список Б</label><textarea id="list-b" spellcheck="false" placeholder="B-202&#10;D-404&#10;A-101" aria-describedby="compare-limit"></textarea></div></div>
+      <p id="compare-limit" class="small">На каждый список: до 10 000 строк и 200 000 символов. Пустые строки пропускаются. Удаляются только пробелы по краям; регистр и символы внутри SKU не меняются.</p>
+      <div class="actions"><button id="compare-button" class="button" type="button">Найти совпадения</button><button id="example-button" class="button secondary" type="button">Показать вымышленный пример</button><button id="clear-button" class="button secondary" type="button">Очистить</button></div>
+      <div id="results" class="results" role="status" aria-live="polite"><p>Результат появится после сравнения.</p></div>
+      <p class="small">Введённые артикулы не отправляются сервису и не сохраняются между открытиями страницы. Для реальных данных соблюдайте правила своей компании.</p>
+    </section>
+    <section><div class="callout"><h2>Когда совпадение нормально</h2><p>Не сравнивайте как ошибку файл <strong>описания товаров</strong> с файлом <strong>условий размещения</strong>: один и тот же товар может присутствовать в обоих. Эта проверка помогает найти пересечение между двумя источниками <em>одного назначения</em>; она не знает, какие файлы вы вставили. <a href="yml.html">Как различить назначения YML →</a></p></div></section>
+    <section><h2>Если найдено пересечение</h2><ol class="steps"><li>Сверьте указанные строки с исходными файлами и убедитесь, что это один и тот же товар, а не случайно совпавший артикул.</li><li>Проверьте, какое назначение и модель работы заданы каждому источнику в кабинете Маркета. Не удаляйте оффер и не меняйте SKU существующего товара только по этой таблице.</li><li>После исправления исходников повторите штатную проверку файлов в кабинете Маркета и проверьте статус товара на витрине.</li></ol><p>Если повторы находятся <em>внутри</em> одного столбца, используйте <a href="sku-dubl.html">отдельную проверку одного списка SKU</a>.</p></section>
+    <section><h2>Почему проверять два источника</h2><p>В <a href="https://yandex.ru/support/marketplace/ru/assortment/auto/yml">справке Маркета по YML</a> сказано, что для DBS-магазина файл можно разделить на несколько, но один и тот же товар лучше не помещать в разные файлы. Сверьте также <a href="https://yandex.ru/support/marketplace/ru/assortment/auto/url">правила обновления по ссылке</a> для вашей модели работы. Бесплатная страница сравнивает лишь вставленные значения; она не проверяет YML, <code>shop-sku</code>, историю обновлений или фактическую публикацию товара.</p><div class="actions"><a class="button" href="synthetic-report.pdf">Смотреть синтетический пример отчёта</a><a class="button secondary" href="https://market.yandex.ru/card/veb-servis-fidkontrol-dlya-proverki-csv-yml-i-xlsx-litsenziya-na-30-dney/6150346398">30-дневная лицензия для предпроверки файла</a></div><p class="small">Платный сервис проверяет файл целиком по своим правилам, но эта страница не утверждает, что он автоматически сравнивает два разных фида. Перед покупкой проверьте состав и условия выдачи в карточке.</p></section>
+  </div>
+</main>
+<footer class="site-foot"><div class="wrap">ФидКонтроль · <a href="index.html">Выбор сценария</a> · <a href="sku-dubl.html">Один список SKU</a> · <a href="https://market.yandex.ru/card/veb-servis-fidkontrol-dlya-proverki-csv-yml-i-xlsx-litsenziya-na-30-dney/6150346398">Лицензия на Маркете</a></div></footer>
+<script>
+(() => {
+  'use strict';
+  const aInput=document.getElementById('list-a'), bInput=document.getElementById('list-b'), result=document.getElementById('results');
+  const maxRows=10000, maxCharacters=200000, maxShown=200;
+  function message(text,state){result.replaceChildren();const p=document.createElement('p');p.textContent=text;if(state)p.dataset.state=state;result.append(p);}
+  function readList(text,label){
+    const cleaned=text.replace(/^\uFEFF/,'');
+    if(cleaned.length>maxCharacters)throw new Error('Список '+label+' слишком длинный: разделите его на части до 200 000 символов.');
+    const lines=cleaned.split(/\r\n|\n|\r/);
+    if(lines.length>maxRows)throw new Error('В списке '+label+' больше 10 000 строк: разделите его на части.');
+    const bySku=new Map();let filled=0;
+    lines.forEach((line,index)=>{const sku=line.trim();if(!sku)return;filled++;const rows=bySku.get(sku)||[];rows.push(index+1);bySku.set(sku,rows);});
+    if(!filled)throw new Error('Заполните список '+label+' хотя бы одним SKU.');
+    return {bySku,filled};
+  }
+  document.getElementById('compare-button').addEventListener('click',()=>{
+    let a,b;try{a=readList(aInput.value,'А');b=readList(bInput.value,'Б');}catch(error){message(error.message,'error');return;}
+    const overlap=[...a.bySku].filter(([sku])=>b.bySku.has(sku));
+    if(!overlap.length){message('Проверено '+a.filled+' строк в А и '+b.filled+' строк в Б. Точных совпадений между этими списками нет.');return;}
+    result.replaceChildren();const p=document.createElement('p');p.textContent='Проверено '+a.filled+' строк в А и '+b.filled+' строк в Б. Совпадают '+overlap.length+' разных SKU.';result.append(p);
+    const table=document.createElement('table');const head=table.createTHead().insertRow();
+    for(const title of ['SKU','Строки в А','Строки в Б']){const th=document.createElement('th');th.scope='col';th.textContent=title;head.append(th);}
+    const body=table.createTBody();
+    for(const [sku,rowsA] of overlap.slice(0,maxShown)){const row=body.insertRow();row.insertCell().textContent=sku;row.insertCell().textContent=rowsA.join(', ');row.insertCell().textContent=b.bySku.get(sku).join(', ');}
+    result.append(table);
+    if(overlap.length>maxShown){const note=document.createElement('p');note.textContent='Показаны первые '+maxShown+' совпадений. Разделите списки на части для просмотра остальных.';result.append(note);}
+  });
+  document.getElementById('example-button').addEventListener('click',()=>{aInput.value='A-101\nB-202\nC-303';bInput.value='B-202\nD-404\nA-101';document.getElementById('compare-button').click();});
+  document.getElementById('clear-button').addEventListener('click',()=>{aInput.value='';bInput.value='';message('Списки очищены. Результат появится после сравнения.');aInput.focus();});
+})();
+</script>
+</body>
+</html>
