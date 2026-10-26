@@ -54,8 +54,8 @@
   document.getElementById('compare-button').addEventListener('click',()=>{
     let a,b;try{a=readList(aInput.value,'А');b=readList(bInput.value,'Б');}catch(error){message(error.message,'error');return;}
     const overlap=[...a.bySku].filter(([sku])=>b.bySku.has(sku));
-    if(!overlap.length){message('Проверено '+a.filled+' строк в А и '+b.filled+' строк в Б. Точных совпадений между этими списками нет.');return;}
-    result.replaceChildren();const p=document.createElement('p');p.textContent='Проверено '+a.filled+' строк в А и '+b.filled+' строк в Б. Совпадают '+overlap.length+' разных SKU.';result.append(p);
+    if(!overlap.length){message('Строк: '+a.filled+' в А, '+b.filled+' в Б. Точных совпадений между этими списками нет.');return;}
+    result.replaceChildren();const p=document.createElement('p');p.textContent='Строк: '+a.filled+' в А, '+b.filled+' в Б. Найдено общих SKU: '+overlap.length+'.';result.append(p);
     const table=document.createElement('table');const head=table.createTHead().insertRow();
     for(const title of ['SKU','Строки в А','Строки в Б']){const th=document.createElement('th');th.scope='col';th.textContent=title;head.append(th);}
     const body=table.createTBody();
